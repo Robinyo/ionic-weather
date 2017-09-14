@@ -1,38 +1,51 @@
 import { Component, ViewChild } from '@angular/core';
+
 import { Nav, Platform } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
+import { Geolocation } from '@ionic-native/geolocation';
 
-import { HomePage } from '../pages/home/home';
-import { ListPage } from '../pages/list/list';
+import { WeatherPage } from '../pages/weather/weather';
+import { LocationsPage } from '../pages/locations/locations';
+
+import { LoggerService } from '../services/log4ts/logger.service';
 
 @Component({
   templateUrl: 'app.html'
 })
 export class MyApp {
+
   @ViewChild(Nav) nav: Nav;
 
-  rootPage: any = HomePage;
+  rootPage: any = WeatherPage;
 
-  pages: Array<{title: string, component: any}>;
+  pages: Array<{title: string, component: any, icon: string}>;
 
-  constructor(public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen) {
-    this.initializeApp();
+  constructor(public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen,
+              private geolocation: Geolocation, private logger: LoggerService) {
 
-    // used for an example of ngFor and navigation
+    this.logger.info('Application component initialised');
+    // logger.warn('AppComponent: logger.warn()');
+    // logger.error('AppComponent: logger.error()');
+
     this.pages = [
-      { title: 'Home', component: HomePage },
-      { title: 'List', component: ListPage }
+      { title: 'Edit Locations', component: LocationsPage, icon: 'create' },
+      { title: 'Current Location', component: WeatherPage, icon: 'pin' }
     ];
 
+    this.initializeApp();
   }
 
   initializeApp() {
+
     this.platform.ready().then(() => {
-      // Okay, so the platform is ready and our plugins are available.
-      // Here you can do any higher level native things you might need.
-      this.statusBar.styleDefault();
-      this.splashScreen.hide();
+
+      // this.statusBar.styleDefault();
+      // this.splashScreen.hide();
+
+      this.geolocation.getCurrentPosition().then(pos => {
+        this.logger.info('lat: ' + pos.coords.latitude + ', lon: ' + pos.coords.longitude);
+      });
     });
   }
 
@@ -42,3 +55,4 @@ export class MyApp {
     this.nav.setRoot(page.component);
   }
 }
+
