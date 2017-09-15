@@ -53,28 +53,20 @@ export class WeatherPage {
         this.theWeather = theResult;
         this.currentData = this.theWeather.currently;
         this.daily = this.theWeather.daily;
-        this.currentData.temperature = WeatherPage.convertFahrenheitToCelsius(this.currentData.temperature);
+        this.currentData.temperature = this.convertFtoC(this.currentData.temperature);
         loader.dismiss();
       });
 
     }).catch((err) => {
-      // this.logger.error('Error code: ' + err.code + ', Error message: ' + err.message);
+
       this.logger.error('geolocation.getCurrentPosition() error: ' + err.message);
     })
-
-
   }
 
   // https://www.thoughtco.com/fahrenheit-to-celsius-formula-609230
 
-  static convertFahrenheitToCelsius(temperature: number): number {
+  convertFtoC(temperature: number): number {
     return (temperature - 32) * 5 / 9;
-  }
-
-  // http://blog.ionic.io/navigating-lifecycle-events/
-
-  ionViewDidLoad() {
-    // this.logger.info('Weather Page component: ionViewDidLoad()');
   }
 
   doRefresh(refresher) {
@@ -90,6 +82,16 @@ import {OnAfterViewInit, Component} from '@angular/core';
 export class WeatherPage implements OnAfterViewInit {
   ngAfterViewInit() {}
 
+// this.logger.error('Error code: ' + err.code + ', Error message: ' + err.message);
+
+// http://blog.ionic.io/navigating-lifecycle-events/
+
+ionViewDidLoad() {
+  this.logger.info('Weather Page component: ionViewDidLoad()');
+}
+
+  static convertFahrenheitToCelsius(temperature: number): number {
+    return (temperature - 32) * 5 / 9;
+  }
+
 */
-
-

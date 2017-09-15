@@ -32,16 +32,16 @@
 
     <ion-row>
       <ion-col col-4>
-        {{daily.data[0].temperatureMax | number:'.0-0'}}&deg;<br>
-        {{daily.data[0].temperatureMin | number:'.0-0'}}&deg;
+        {{convertFtoC(daily.data[0].temperatureMax) | number:'.0-0'}}&deg;<br>
+        {{convertFtoC(daily.data[0].temperatureMin) | number:'.0-0'}}&deg;
       </ion-col>
       <ion-col col-4>
-        {{daily.data[1].temperatureMax | number:'.0-0'}}&deg;<br>
-        {{daily.data[1].temperatureMin | number:'.0-0'}}&deg;
+        {{convertFtoC(daily.data[1].temperatureMax) | number:'.0-0'}}&deg;<br>
+        {{convertFtoC(daily.data[1].temperatureMin) | number:'.0-0'}}&deg;
       </ion-col>
       <ion-col col-4>
-        {{daily.data[2].temperatureMax | number:'.0-0'}}&deg;<br>
-        {{daily.data[2].temperatureMin | number:'.0-0'}}&deg;
+        {{convertFtoC(daily.data[2].temperatureMax) | number:'.0-0'}}&deg;<br>
+        {{convertFtoC(daily.data[2].temperatureMin) | number:'.0-0'}}&deg;
       </ion-col>
     </ion-row>
 

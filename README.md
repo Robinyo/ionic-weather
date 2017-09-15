@@ -1,26 +1,21 @@
-This is a starter template for [Ionic](http://ionicframework.com/docs/) projects.
+# Weather App
 
-## How to use this template
+This project was generated using the [Ionic CLI](ttps://ionicframework.com/docs/cli/) version 3.10.3
 
-*This template does not work on its own*. The shared files for each starter are found in the [ionic2-app-base repo](https://github.com/ionic-team/ionic2-app-base).
+![ionic-weather screenshot](https://github.com/Robinyo/ionic-weather/blob/master/ionic-weather.png)
 
-To use this template, either create a new ionic project using the ionic node.js utility, or copy the files from this repository into the [Starter App Base](https://github.com/ionic-team/ionic2-app-base).
+## Development server
 
-### With the Ionic CLI:
+Run `iocic serve` for a dev server. Navigate to `http://localhost:8100/`. The app will automatically reload if you change any of the source files.
 
-Take the name after `ionic2-starter-`, and that is the name of the template to be used when using the `ionic start` command below:
+## Code scaffolding
 
-```bash
-$ sudo npm install -g ionic cordova
-$ ionic start mySideMenu sidemenu
-```
+Run `ionic g page page-name` to generate a new page. You can also use `ionic g [page|component|directive|pipe|provider|tabs] [element name]`.
 
-Then, to run it, cd into `mySideMenu` and run:
+## Build
 
-```bash
-$ ionic cordova platform add ios
-$ ionic cordova run ios
-```
+Run `ionic build` to build the project. The build artifacts will be stored in the `www/` directory. Use the `-prod` flag for a production build.
 
-Substitute ios for android if not on a Mac.
+## Manually set Geolocation
 
+![ionic-weather screenshot](https://github.com/Robinyo/ionic-weather/blob/master/dev-tools-console-sensors.png)
