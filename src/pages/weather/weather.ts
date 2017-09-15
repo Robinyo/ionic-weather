@@ -1,10 +1,11 @@
-import { Component } from '@angular/core';
+import { Component} from '@angular/core';
 
 import { LoggerService } from '../../services/log4ts/logger.service';
 
 import { IonicPage, NavController, NavParams, LoadingController, Refresher } from 'ionic-angular';
+import { Geolocation } from '@ionic-native/geolocation';
 
-import { WeatherService } from '../../services/weather-service/weather-service';
+import { Location, WeatherService } from '../../services/weather-service/weather-service';
 
 @IonicPage()
 @Component({
@@ -16,29 +17,63 @@ export class WeatherPage {
   theWeather: any = {};
   currentData: any = {};
   daily: any = {};
-  loader: LoadingController;
+  location: Location = {lat:0 , lon: 0};
   refresher: Refresher;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public loadingCtrl: LoadingController,
-              private logger: LoggerService, private weatherService: WeatherService) {
+              private logger: LoggerService, private weatherService: WeatherService, private geolocation: Geolocation) {
 
     this.logger.info('Weather Page component initialised');
 
     let loader = this.loadingCtrl.create({
-      content: "Loading weather data...",
-      duration: 3000
+      content: "Loading weather data..."
     });
 
     loader.present();
 
-    this.weatherService.getWeather().then(theResult => {
-      this.theWeather = theResult;
-      this.currentData = this.theWeather.currently;
-      this.daily = this.theWeather.daily;
-    });
+    // https://stackoverflow.com/questions/42549928/geolocation-error-in-google-chrome
+    // Set location manually via Dev Tools -> Sensors -> e.g., Latitude/Longitude	-35.3151,149.1512
+
+    this.geolocation.getCurrentPosition().then(pos => {
+
+      this.logger.info('lat: ' + pos.coords.latitude + ', lon: ' + pos.coords.longitude);
+
+      this.location.lat = pos.coords.latitude;
+      this.location.lon = pos.coords.longitude;
+      this.location.timestamp = pos.timestamp;
+      return this.location;
+
+    }).then (location => {
+
+      this.logger.info('Weather Page component: this.weatherService.getWeather()');
+
+      this.weatherService.getWeather().then(theResult => {
+        this.theWeather = theResult;
+        this.currentData = this.theWeather.currently;
+        this.daily = this.theWeather.daily;
+        this.currentData.temperature = WeatherPage.convertFahrenheitToCelsius(this.currentData.temperature);
+        loader.dismiss();
+      });
+
+    }).catch((err) => {
+      // this.logger.error('Error code: ' + err.code + ', Error message: ' + err.message);
+      this.logger.error('geolocation.getCurrentPosition() error: ' + err.message);
+    })
+
+
   }
 
+  // https://www.thoughtco.com/fahrenheit-to-celsius-formula-609230
 
+  static convertFahrenheitToCelsius(temperature: number): number {
+    return (temperature - 32) * 5 / 9;
+  }
+
+  // http://blog.ionic.io/navigating-lifecycle-events/
+
+  ionViewDidLoad() {
+    // this.logger.info('Weather Page component: ionViewDidLoad()');
+  }
 
   doRefresh(refresher) {
     setTimeout(() => {
@@ -49,9 +84,10 @@ export class WeatherPage {
 
 /*
 
-  ionViewDidLoad() {
-    this.logger.info('Weather Page component: ionViewDidLoad()');
-  }
+import {OnAfterViewInit, Component} from '@angular/core';
+export class WeatherPage implements OnAfterViewInit {
+  ngAfterViewInit() {}
+
+*/
 
 
- */

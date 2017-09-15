@@ -44,6 +44,10 @@
         "@ionic/app-scripts": "2.1.4",
         "typescript": "2.3.4"
     },
+    "config": {
+        "ionic_optimization": "./config/optimization.config.js",
+        "ionic_webpack": "./config/webpack.config.js"
+    },
     "description": "An Ionic project",
     "cordova": {
         "plugins": {

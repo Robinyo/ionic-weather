@@ -4,7 +4,7 @@
     <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
-    <ion-title>Current Location</ion-title>
+    <ion-title>Weather</ion-title>
   </ion-navbar>
 
 </ion-header>
@@ -43,6 +43,12 @@
         {{daily.data[2].temperatureMin | number:'.0-0'}}&deg;
       </ion-col>
     </ion-row>
+
+    <!--
+    <ion-row>
+      <p><a href="https://darksky.net/poweredby/">Powered by Dark Sky</a></p>
+    </ion-row>
+    -->
 
   </ion-grid>
 
