@@ -1,5 +1,6 @@
 <ion-header>
 
+  <!-- <ion-navbar transparent> -->
   <ion-navbar>
     <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
@@ -9,7 +10,7 @@
 
 </ion-header>
 
-<ion-content padding>
+<ion-content>
 
   <ion-refresher (ionRefresh)="doRefresh($event)">
     <ion-refresher-content
@@ -20,7 +21,7 @@
     </ion-refresher-content>
   </ion-refresher>
 
-  <ion-grid *ngIf="daily.data != undefined">
+  <ion-grid *ngIf="daily.data != undefined" transparent>
 
     <ion-row>
       <ion-col col-12>
@@ -43,12 +44,6 @@
         {{daily.data[2].temperatureMin | number:'.0-0'}}&deg;
       </ion-col>
     </ion-row>
-
-    <!--
-    <ion-row>
-      <p><a href="https://darksky.net/poweredby/">Powered by Dark Sky</a></p>
-    </ion-row>
-    -->
 
   </ion-grid>
 

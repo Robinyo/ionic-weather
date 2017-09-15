@@ -10,7 +10,8 @@ import { Location, WeatherService } from '../../services/weather-service/weather
 @IonicPage()
 @Component({
   selector: 'page-weather',
-  templateUrl: 'weather.html',
+  templateUrl: 'weather.html'
+  // styleUrls: ['weather.css'] or styleUrls: ['weather.scss'] ???
 })
 export class WeatherPage {
 
@@ -36,7 +37,8 @@ export class WeatherPage {
 
     this.geolocation.getCurrentPosition().then(pos => {
 
-      this.logger.info('lat: ' + pos.coords.latitude + ', lon: ' + pos.coords.longitude);
+      this.logger.info('Weather Page component: this.geolocation.getCurrentPosition()');
+      this.logger.info('latitude: ' + pos.coords.latitude + ', longitude: ' + pos.coords.longitude);
 
       this.location.lat = pos.coords.latitude;
       this.location.lon = pos.coords.longitude;

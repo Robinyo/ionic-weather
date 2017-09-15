@@ -11,7 +11,7 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 @IonicPage()
 @Component({
   selector: 'page-locations',
-  templateUrl: 'locations.html',
+  templateUrl: 'locations.html'
 })
 export class LocationsPage {
 
