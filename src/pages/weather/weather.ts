@@ -32,17 +32,18 @@ export class WeatherPage {
 
     loader.present();
 
+
     // https://stackoverflow.com/questions/42549928/geolocation-error-in-google-chrome
     // Set location manually via Dev Tools -> Sensors -> e.g., Latitude/Longitude	-35.3151,149.1512
 
-    this.geolocation.getCurrentPosition().then(pos => {
+    this.geolocation.getCurrentPosition().then(postion => {
 
       this.logger.info('Weather Page component: this.geolocation.getCurrentPosition()');
-      this.logger.info('latitude: ' + pos.coords.latitude + ', longitude: ' + pos.coords.longitude);
+      this.logger.info('latitude: ' + postion.coords.latitude + ', longitude: ' + postion.coords.longitude);
 
-      this.location.lat = pos.coords.latitude;
-      this.location.lon = pos.coords.longitude;
-      this.location.timestamp = pos.timestamp;
+      this.location.lat = postion.coords.latitude;
+      this.location.lon = postion.coords.longitude;
+      this.location.timestamp = postion.timestamp;
       return this.location;
 
     }).then (location => {
