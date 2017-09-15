@@ -6,11 +6,12 @@ This project was generated using the [Ionic CLI](https://ionicframework.com/docs
 
 ## Development server
 
-Run `iocic serve` for a dev server. Navigate to `http://localhost:8100/`. The app will automatically reload if you change any of the source files.
+Run `iocic serve` for a dev server. Navigate to `http://localhost:8100/`.<br />
+ The app will automatically reload if you change any of the source files.
 
 ## Code scaffolding
 
-Run `ionic g page page-name` to generate a new page. 
+Run `ionic g page page-name` to generate a new page.<br /> 
 You can also use `ionic g [page|component|directive|pipe|provider|tabs] [element name]`.
 
 ## Build
