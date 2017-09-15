@@ -1,6 +1,6 @@
 # Weather App
 
-This project was generated using the [Ionic CLI](ttps://ionicframework.com/docs/cli/) version 3.10.3
+This project was generated using the [Ionic CLI](https://ionicframework.com/docs/cli/) version 3.10.3
 
 ![ionic-weather screenshot](https://github.com/Robinyo/ionic-weather/blob/master/ionic-weather.png)
 
@@ -10,7 +10,8 @@ Run `iocic serve` for a dev server. Navigate to `http://localhost:8100/`. The ap
 
 ## Code scaffolding
 
-Run `ionic g page page-name` to generate a new page. You can also use `ionic g [page|component|directive|pipe|provider|tabs] [element name]`.
+Run `ionic g page page-name` to generate a new page. 
+You can also use `ionic g [page|component|directive|pipe|provider|tabs] [element name]`.
 
 ## Build
 
